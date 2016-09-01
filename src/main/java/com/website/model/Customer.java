@@ -34,7 +34,7 @@ public class Customer {
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private Set<CustomerPayment> customerPayments;
 
     @ManyToMany(fetch = FetchType.EAGER)

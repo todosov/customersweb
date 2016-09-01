@@ -38,7 +38,7 @@ public class CustomerUserDetails implements UserDetailsService {
             authorities.addAll(profiles.stream().map(
                     profile -> new SimpleGrantedAuthority(("ROLE_" + profile.getType()))).collect(Collectors.toList()));
             //authorities.add(new SimpleGrantedAuthority("ROLE_" + customer.getProfiles()));
-            return new User(customer.getFirstName(), customer.getPassword(), authorities);
+            return new User(customer.getUsername(), customer.getPassword(), authorities);
         }
         throw new UsernameNotFoundException("Username " + customerUsername + " not found");
     }

@@ -20,7 +20,7 @@ public class CustomerPayment {
     private int id;
 
     @Column(name = "amount", nullable = false)
-    private int amount;
+    private double amount;
 
     @Column(name = "date", nullable = false)
     private Date date;

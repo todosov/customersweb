@@ -1,8 +1,14 @@
 package com.website.controller;
 
+import com.sun.javafx.sg.prism.NGShape;
+import com.website.model.Customer;
+import com.website.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class WebController {
 
+    @Autowired
+    CustomerService customerService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
         return "login";
@@ -20,17 +29,30 @@ public class WebController {
 
     //@RequestMapping(value = "/appLogin", method = RequestMethod.POST)
 
+    @RequestMapping(value = "/payments", method = RequestMethod.GET)
+    public String getPayments(Model model) {
+        Customer customer = customerService.findByUsername(getPrincipal());
+        model.addAttribute("payments", customer.getCustomerPayments());
+        return "payments";
+    }
 
     private String getPrincipal(){
-        String userName = null;
+        String username = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails){
-            userName = ((UserDetails)principal).getUsername();
+            username = ((UserDetails)principal).getUsername();
         }
         else{
-            userName = principal.toString();
+            username = principal.toString();
         }
-        return userName;
+        return username;
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test(Model model) {
+        model.addAttribute("user", getPrincipal());
+        return "test";
+    }
+
 
 }
