@@ -26,6 +26,6 @@ public class CustomerPayment {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }

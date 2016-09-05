@@ -25,8 +25,8 @@ public class Customer {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
-//    @Column(name = "total_amount", nullable = false, length = 20)
-//    private int totalAmount;
+    @Column(name = "total_amount", nullable = false, length = 20)
+    private double totalAmount;
 
     @Column(name = "username", nullable = false, length = 20)
     private String username;
@@ -38,6 +38,12 @@ public class Customer {
     private Set<CustomerPayment> customerPayments;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "customer_profile", joinColumns = {@JoinColumn(name = "customer_id")}, inverseJoinColumns = {@JoinColumn(name = "profile_id")})
+    @JoinTable(name = "customer_profile",
+            joinColumns = {@JoinColumn(name = "customer_id")},
+            inverseJoinColumns = {@JoinColumn(name = "profile_id")}
+    )
     private Set<Profile> profiles;
+
+
+
 }
