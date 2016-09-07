@@ -20,7 +20,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.website")
+@ComponentScan("com.website.controller")
 public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Bean

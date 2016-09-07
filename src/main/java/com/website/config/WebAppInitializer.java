@@ -1,5 +1,6 @@
 package com.website.config;
 
+import com.website.CustomersWebRootConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -8,7 +9,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class, HibernateConfig.class };
+        return new Class<?>[] { CustomersWebRootConfig.class, HibernateConfig.class };
     }
 
     @Override
