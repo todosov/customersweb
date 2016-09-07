@@ -1,6 +1,8 @@
 package com.website.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -9,7 +11,8 @@ import java.sql.Date;
  * Created by tadasyan on 18.07.16.
  */
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "customer_payment")
 public class CustomerPayment {
@@ -27,5 +30,5 @@ public class CustomerPayment {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private     Customer customer;
 }
