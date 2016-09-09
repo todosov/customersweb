@@ -4,6 +4,7 @@ package com.website.model;
  * Created by tadasyan on 18.07.16.
  */
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter@Setter
+@Getter
+@Setter
 @Entity
 @Table(name="customer")
 public class Customer {
