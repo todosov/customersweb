@@ -1,5 +1,6 @@
 package com.website.config;
 
+import com.website.RootConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
