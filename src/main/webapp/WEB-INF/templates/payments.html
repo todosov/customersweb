@@ -10,10 +10,16 @@
 <div class="login-page">
     <div class="form">
         <table>
-            <tr th:each="payment : ${payments}">
+            <tr>
+                <th></th>
+                <th>Сумма платежа</th>
+                <th>Дата платежа</th>
+            </tr>
+            <tr th:each="payment, status : ${payments}">
+                <td th:text="${status.index}"></td>
                 <td th:text="${payment.amount}"></td>
                 <td th:text="${payment.date}"></td>
-        </tr>
+            </tr>
         </table>
     </div>
 </div>
