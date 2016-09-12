@@ -2,23 +2,24 @@
 <head>
     <meta charset="UTF-8"/>
     <title> Login </title>
-    <link rel="stylesheet"  th:href="@{/static/css/login_page.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/>
+    <link rel="stylesheet"  th:href="@{/css/payments_page.css}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script th:src="@{/static/js/login_page.js}"></script>
+    <script th:src="@{/js/login_page.js}"></script>
 </head>
 <body>
 <div class="login-page">
     <div class="form">
-        <table>
+        <table class="payments">
             <tr>
                 <th></th>
                 <th>Сумма платежа</th>
                 <th>Дата платежа</th>
             </tr>
             <tr th:each="payment, status : ${payments}">
-                <td th:text="${status.index}"></td>
+                <td th:text="${status.index + 1}"></td>
                 <td th:text="${payment.amount}"></td>
-                <td th:text="${payment.date}"></td>
+                <td th:text="${payment.getFormattedDate()}"></td>
             </tr>
         </table>
     </div>

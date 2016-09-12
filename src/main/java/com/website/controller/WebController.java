@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 /**
@@ -34,11 +35,12 @@ public class WebController {
     @RequestMapping(value = "/payments", method = RequestMethod.GET)
     public String getPayments(Model model) {
         Customer customer = customerService.findByUsername(getPrincipal());
-        /*model.addAttribute("payments", customer.getCustomerPayments()
+        model.addAttribute("payments", customer.getCustomerPayments()
                 .stream()
-                .sorted((o1, o2) -> o1.getDate().compareTo(o2.getDate()))
-                .collect(Collectors.toList()));*/
-        model.addAttribute("payments", customer.getCustomerPayments());
+                .sorted((o1, o2) -> o2.getDate().compareTo(o1.getDate()))
+                .collect(Collectors.toList()));
+        //customer.getCustomerPayments().stream().forEach(customerPayment -> customerPayment.getDate().format(DateTimeFormatter.RFC_1123_DATE_TIME));
+        //model.addAttribute("payments", customer.getCustomerPayments());
         return "payments";
     }
 

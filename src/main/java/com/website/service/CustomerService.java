@@ -1,6 +1,5 @@
 package com.website.service;
 
-import com.website.dao.CustomerDAO;
 import com.website.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 

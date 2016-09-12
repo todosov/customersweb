@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by tadasyan on 18.07.16.
@@ -21,7 +22,7 @@ public class CustomerPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "amount", nullable = false)
     private double amount;
@@ -32,4 +33,12 @@ public class CustomerPayment {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private     Customer customer;
+
+    public String getFormattedDate(DateTimeFormatter formatter){
+        return date.format(formatter);
+    }
+
+    public String getFormattedDate(){
+        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyy"));
+    }
 }
