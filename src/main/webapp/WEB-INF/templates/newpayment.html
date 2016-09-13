@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title> Add payment </title>
+    <link rel="stylesheet"  th:href="@{/css/login_page.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script th:src="@{/js/login_page.js}"></script>
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <form th:action="@{/newpayment}" th:object="${CustomerPayment}" method="POST" class="login-form">
+            <!--<input type="text" placeholder="amount" th:field="*{amount}"/>-->
+            <!--<input type="password" name="description" th:field="*{description}"/>-->
+            <input type="text" name="amount" placeholder="amount"/>
+            <input type="text" name="description" placeholder="description"/>
+            <div th:if="${param.error}" class="error_msg">Bad Credentials</div>
+            <input type="submit" value="Send" class="button"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

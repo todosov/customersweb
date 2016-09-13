@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -28,7 +29,10 @@ public class CustomerPayment {
     private double amount;
 
     @Column(name = "date", nullable = false)
-    private LocalDate date;
+    private LocalDateTime date;
+
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -39,6 +43,6 @@ public class CustomerPayment {
     }
 
     public String getFormattedDate(){
-        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyy"));
+        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyy HH:mm"));
     }
 }
