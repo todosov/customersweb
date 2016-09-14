@@ -5,6 +5,8 @@ import com.website.model.Customer;
 import com.website.model.CustomerPayment;
 import com.website.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -35,14 +37,16 @@ public class WebController {
     }
 
     @RequestMapping(value = "/payments", method = RequestMethod.GET)
-    public String getPayments(Model model) {
-        Customer customer = customerService.findByUsername(getPrincipal());
-        model.addAttribute("payments", customer.getCustomerPayments()
-                .stream()
-                .sorted((o1, o2) -> o2.getDate().compareTo(o1.getDate()))
-                .collect(Collectors.toList()));
-        model.addAttribute("customer", String.format("%s %s", customer.getFirstName(), customer.getLastName()));
-        return "payments";
+    public String getPayments(Model model, Pageable pageable) {
+//        Customer customer = customerService.findByUsername(getPrincipal());
+//        model.addAttribute("payments", customer.getCustomerPayments()
+//                .stream()
+//                .sorted((o1, o2) -> o2.getDate().compareTo(o1.getDate()))
+//                .collect(Collectors.toList()));
+//        model.addAttribute("customer", String.format("%s %s", customer.getFirstName(), customer.getLastName()));
+        Page<CustomerPayment> payments = customerService.getPaymentsByUsername(getPrincipal(), pageable);
+        model.addAttribute("payment", payments);
+        return "payments1";
     }
 
     @RequestMapping(value = "/newpayment", method = RequestMethod.GET)
