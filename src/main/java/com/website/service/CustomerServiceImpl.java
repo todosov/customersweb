@@ -5,6 +5,8 @@ import com.website.model.CustomerPayment;
 import com.website.repository.CustomerPaymentRepository;
 import com.website.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
-
     @Autowired
     private CustomerPaymentRepository customerPaymentRepository;
-
-    @Override
-    public List<Customer> findAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    @Override
-    public void saveCustomer(Customer customer) {
-        customerRepository.save(customer);
-    }
 
     @Override
     public void saveCustomerPayment(CustomerPayment customerPayment) {
@@ -45,5 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByUsername(String username) {
         return customerRepository.findCustomerByUsername(username);
+    }
+
+    @Override
+    public Page<CustomerPayment> getPaymentsByUsername(String username, Pageable pageRequest) {
+        return customerPaymentRepository.findByCustomer(customerRepository.findCustomerByUsername(username), pageRequest);
     }
 }
