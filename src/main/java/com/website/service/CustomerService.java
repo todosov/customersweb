@@ -1,7 +1,7 @@
 package com.website.service;
 
-import com.website.dao.CustomerDAO;
 import com.website.model.Customer;
+import com.website.model.CustomerPayment;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -14,6 +14,8 @@ public interface CustomerService {
     List<Customer> findAllCustomers();
 
     void saveCustomer(Customer customer);
+
+    void saveCustomerPayment(CustomerPayment customerPayment);
 
     Customer findByUsername(String username);
 }
