@@ -6,6 +6,7 @@ import com.website.model.CustomerPayment;
 import com.website.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,8 +45,9 @@ public class WebController {
 //                .sorted((o1, o2) -> o2.getDate().compareTo(o1.getDate()))
 //                .collect(Collectors.toList()));
 //        model.addAttribute("customer", String.format("%s %s", customer.getFirstName(), customer.getLastName()));
+        //pageable = new PageRequest(1, 10);
         Page<CustomerPayment> payments = customerService.getPaymentsByUsername(getPrincipal(), pageable);
-        model.addAttribute("payment", payments);
+        model.addAttribute("payments", payments.getContent());
         return "payments1";
     }
 
