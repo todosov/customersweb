@@ -29,8 +29,8 @@ public class Customer {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
-//    @Column(name = "total_amount", nullable = false, length = 20)
-//    private double totalAmount;
+    @Column(name = "total_amount", nullable = false, length = 20)
+    private double totalAmount;
 
     @Column(name = "username", nullable = false, length = 20)
     private String username;
